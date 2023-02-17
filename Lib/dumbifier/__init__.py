@@ -1,11 +1,13 @@
 import dumbifier.corner_components as corner_components
 import dumbifier.rtl_kerning as rtl_kerning
+import dumbifier.destringify_axis_values as destringify_axis_values
 
 modules = [
     corner_components,
-    rtl_kerning
+    rtl_kerning,
+    destringify_axis_values,
 ]
-module_names = [module.__name__.replace("dumbifier.","") for module in modules]
+module_names = [module.__name__.replace("dumbifier.", "") for module in modules]
 
 
 def process_font(font, disable=set(), only=set()):
@@ -14,5 +16,4 @@ def process_font(font, disable=set(), only=set()):
             continue
         if disable and module_name in disable:
             continue
-
         module.process_font(font)
